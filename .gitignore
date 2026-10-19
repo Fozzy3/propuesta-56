@@ -1,0 +1,8 @@
+# Solo se publica la presentación y el simulador; la convocatoria, la propuesta y las listas no salen de este equipo
+/*
+!/.gitignore
+!/index.html
+!/presentacion_ejecutiva.html
+!/img/
+!/simulador/
+/simulador/preparar_datos.py

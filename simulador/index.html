@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemelo digital RECONSTRUYE</title>
+<meta name="description" content="Simulador abierto de sismos y maremotos sobre el mapa real: catastro del IGAC, edificaciones de Overture Maps, relieve Terrarium y sismos del USGS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eceae4; --panel: #fffdf9; --ink: #1b2126; --ink-2: #434c54; --muted: #636c74; --line: #e4e0d6;
+    --accent: #1f6f5c; --accent-2: #17594a; --accent-wash: #e5f0ec; --agua: #2b6f9e;
+    --rojo: #c33d2a; --ambar: #c98a0e; --verde: #2f8a5b;
+    --sombra: 0 14px 36px rgba(27, 33, 38, .18), 0 2px 6px rgba(27, 33, 38, .08);
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.4 "IBM Plex Sans", system-ui, sans-serif; overflow: hidden; font-variant-numeric: tabular-nums; }
+  ::selection { background: var(--accent); color: #fff; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button { font: inherit; color: inherit; }
+
+  #escenario { position: fixed; inset: 0; will-change: transform; }
+  #mapa, #polvo { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #polvo { pointer-events: none; }
+
+  .flota { position: fixed; z-index: 3; background: var(--panel); border-radius: 14px; box-shadow: var(--sombra); }
+
+  #lugar { left: 16px; top: 16px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; max-width: calc(50vw - 200px); min-width: 0; }
+  #lugar svg { flex: none; }
+  #lugar .nombre { font-weight: 800; font-size: 19px; letter-spacing: -.01em; line-height: 1.1; white-space: nowrap; }
+  #lugar .dpto { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .insignias { display: flex; gap: 6px; flex-wrap: wrap; }
+  .insignia { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: var(--bg); color: var(--ink-2); white-space: nowrap; }
+  .insignia i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .insignia.igac { background: #1d3a5f; color: #fff; }
+
+  #acciones { right: 56px; top: 16px; padding: 6px; display: flex; gap: 4px; }
+  .ico { border: 0; background: transparent; border-radius: 10px; padding: 8px 11px; display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; color: var(--ink); }
+  .ico:hover, .ico[aria-expanded=true] { background: var(--bg); }
+  .ico.prim { background: var(--accent); color: #fff; }
+  .ico.prim:hover { background: var(--accent-2); }
+
+  #buscar { position: fixed; z-index: 3; top: 16px; left: 50%; transform: translateX(-50%); width: min(300px, 30vw); }
+  #buscar input { width: 100%; font: inherit; border: 0; padding: 11px 16px 11px 38px; border-radius: 99px; background: var(--panel) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23636c74" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>') no-repeat 14px center; box-shadow: var(--sombra); color: var(--ink); }
+  #buscar input:focus { outline: 2px solid var(--accent); }
+
+  .pop { right: 56px; top: 72px; padding: 14px 16px; width: 310px; display: grid; gap: 10px; font-size: 14px; max-height: calc(100vh - 260px); overflow-y: auto; }
+  .pop h2 { font-size: 13px; margin: 4px 0 0; color: var(--muted); font-weight: 700; }
+  .check { display: flex; gap: 9px; align-items: center; cursor: pointer; }
+  .check input { accent-color: var(--accent); width: 16px; height: 16px; }
+  .soltar { border: 1.5px dashed var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; justify-items: center; text-align: center; transition: border-color .15s, background .15s; }
+  .soltar.encima { border-color: var(--accent); background: var(--accent-wash); }
+  .privado { display: inline-flex; gap: 6px; align-items: center; color: var(--accent); font-weight: 700; }
+  .nota { color: var(--muted); font-size: 12.5px; }
+  .errores { margin: 0; padding-left: 18px; color: var(--rojo); font-size: 12.5px; }
+  ul.supuestos { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); }
+  .pop a { color: var(--ink-2); text-underline-offset: 2px; }
+
+  #tablero { left: 50%; bottom: 18px; transform: translateX(-50%); width: min(1060px, calc(100vw - 32px)); padding: 12px 14px; display: grid; gap: 8px; }
+  .fila { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .seg { display: inline-grid; grid-auto-flow: column; background: var(--bg); border-radius: 10px; padding: 3px; gap: 3px; }
+  .seg button { border: 0; border-radius: 8px; padding: 8px 14px; background: transparent; font-weight: 700; font-size: 14px; cursor: pointer; color: var(--ink-2); display: inline-flex; gap: 7px; align-items: center; }
+  .seg button[aria-pressed=true] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 3px rgba(27, 33, 38, .14); }
+  .seg.mini button { padding: 6px 10px; font-size: 13px; }
+  .perilla { display: grid; gap: 2px; min-width: 140px; flex: 1 1 140px; }
+  .perilla label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: var(--muted); font-weight: 600; }
+  .perilla output { font-size: 18px; font-weight: 800; color: var(--ink); }
+  .perilla input { width: 100%; accent-color: var(--accent); margin: 2px 0 0; }
+  .perilla input:disabled { opacity: .45; }
+  #simular { border: 0; background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; padding: 13px 22px; border-radius: 12px; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; margin-left: auto; box-shadow: 0 6px 16px rgba(31, 111, 92, .35); }
+  #simular:hover:not(:disabled) { background: var(--accent-2); }
+  #simular:disabled { opacity: .55; cursor: progress; }
+  .pista { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+  .resultado { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 10px; }
+  .dato { display: grid; }
+  .dato b { font-size: 24px; letter-spacing: -.02em; line-height: 1.05; }
+  .dato span { font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+  .punto { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .btn2 { border: 1px solid var(--accent); color: var(--accent); background: transparent; font-weight: 700; font-size: 14px; padding: 9px 13px; border-radius: 10px; cursor: pointer; }
+  .btn2:hover:not(:disabled) { background: var(--accent-wash); }
+  .btn2:disabled { opacity: .4; cursor: not-allowed; }
+  .resultado .acc { margin-left: auto; display: flex; gap: 8px; }
+
+  #leyenda { right: 16px; bottom: 170px; padding: 10px 12px; font-size: 12.5px; display: grid; gap: 5px; min-width: 150px; }
+  #leyenda .escala { display: grid; grid-template-columns: repeat(6, 1fr); }
+  #leyenda .escala i { height: 9px; display: block; }
+  #leyenda .escala span { text-align: center; color: var(--muted); font-size: 12px; }
+  #leyenda .item { display: flex; align-items: center; gap: 7px; }
+  #leyenda .cubo { width: 13px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  .marca-epi { width: 18px; height: 18px; border-radius: 50%; background: var(--rojo); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .35); position: relative; }
+  .marca-epi::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--rojo); animation: onda 2.4s cubic-bezier(.2, .6, .3, 1) infinite; }
+  .marca-costa { width: 18px; height: 18px; border-radius: 50%; background: var(--agua); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+  @keyframes onda { from { transform: scale(1); opacity: .9; } to { transform: scale(5); opacity: 0; } }
+
+  #aviso { position: fixed; z-index: 5; left: 50%; top: 70px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; box-shadow: var(--sombra); max-width: min(560px, calc(100vw - 32px)); }
+  #cargando { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); font-weight: 600; transition: opacity .5s; text-align: center; padding: 24px; }
+  #cargando.listo { opacity: 0; pointer-events: none; }
+  .maplibregl-ctrl-attrib { font-size: 12px; }
+
+  @media (max-width: 900px) {
+    #lugar { max-width: calc(100vw - 32px); }
+    #buscar { left: 16px; transform: none; top: 84px; width: calc(100vw - 32px); }
+    #acciones { right: 16px; top: 132px; }
+    .ico span { display: none; }
+    .pop { right: 16px; top: 184px; }
+    #tablero { bottom: 8px; width: calc(100vw - 16px); max-height: 46vh; overflow-y: auto; }
+    #simular { margin-left: 0; width: 100%; justify-content: center; }
+    #leyenda { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .marca-epi::after { animation: none; } }
+</style>
+</head>
+<body>
+<div id="cargando" role="status">Cargando el mapa…</div>
+<div id="escenario"><div id="mapa" role="region" aria-label="Mapa del simulador"></div><canvas id="polvo" aria-hidden="true"></canvas></div>
+
+<header class="flota" id="lugar">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f6f5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="RECONSTRUYE"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>
+  <div><div class="nombre" id="nombre">—</div><div class="dpto" id="dpto"></div></div>
+  <div class="insignias" id="insignias"></div>
+</header>
+
+<div id="buscar"><input type="search" list="municipios" id="buscar-input" placeholder="Ir a un municipio" aria-label="Ir a un municipio" autocomplete="off"><datalist id="municipios"></datalist></div>
+
+<nav class="flota" id="acciones" aria-label="Acciones">
+  <button class="ico" id="b-capas" aria-expanded="false" aria-controls="p-capas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg><span>Capas</span></button>
+  <button class="ico" id="b-inv" aria-expanded="false" aria-controls="p-inv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Alcaldía</span></button>
+  <button class="ico" id="b-info" aria-expanded="false" aria-controls="p-info" aria-label="Fuentes y supuestos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></button>
+  <a class="ico prim" id="b-presentacion" href="../presentacion_ejecutiva.html" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M10 8.5l4 1.5-4 1.5z"/></svg><span>Presentación</span></a>
+</nav>
+
+<section class="flota pop" id="p-capas" hidden aria-label="Capas">
+  <label class="check"><input type="checkbox" data-capa="mmi10" checked> Sacudida del 10 de agosto</label>
+  <label class="check"><input type="checkbox" data-capa="replicas" checked> Réplicas del 10 de agosto</label>
+  <label class="check"><input type="checkbox" data-capa="mundo"> Sismos del mundo, 30 días</label>
+  <label class="check"><input type="checkbox" data-capa="mun"> Prioridad: sismo × lluvia</label>
+  <label class="check"><input type="checkbox" data-capa="deslizamientos"> Deslizamientos probables</label>
+  <label class="check"><input type="checkbox" data-capa="licuacion"> Licuación probable</label>
+  <label class="check"><input type="checkbox" data-capa="suelos"> Suelos (IGAC)</label>
+</section>
+
+<section class="flota pop" id="p-inv" hidden aria-label="Datos de la alcaldía">
+  <div class="soltar" id="soltar">
+    <span class="privado"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>No sale de este equipo</span>
+    <label class="btn2" style="cursor:pointer">Abrir GeoJSON<input type="file" id="archivo" accept=".geojson,.json,application/geo+json,application/json" hidden></label>
+    <span class="nota">o arrástrelo aquí · <a href="datos/plantilla_inventario.geojson" download>plantilla</a></span>
+  </div>
+  <ul class="errores" id="errores"></ul>
+  <button class="btn2" id="quitar-inv" hidden>Volver a datos públicos</button>
+</section>
+
+<section class="flota pop" id="p-info" hidden aria-label="Fuentes y supuestos">
+  <ul class="supuestos" id="supuestos"></ul>
+</section>
+
+<section class="flota" id="tablero" aria-label="Simulación">
+  <div class="fila">
+    <div class="seg" role="group" aria-label="Amenaza">
+      <button id="m-sismo" aria-pressed="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4l3-7 4 14 3-7h6"/></svg>Sismo</button>
+      <button id="m-mar" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M8 9a5 5 0 0 1 9-3"/></svg>Maremoto</button>
+    </div>
+    <div class="seg mini" role="group" aria-label="Escenario" id="g-escenario" data-modo="sismo">
+      <button id="e-real" aria-pressed="true">10 ago 2026</button>
+      <button id="e-libre" aria-pressed="false">Libre</button>
+    </div>
+    <div class="perilla" data-modo="sismo"><label for="r-mag">Magnitud <output id="o-mag"></output></label><input type="range" id="r-mag" min="4.5" max="9" step="0.1" value="7.4"></div>
+    <div class="perilla" data-modo="sismo"><label for="r-prof">Profundidad <output id="o-prof"></output></label><input type="range" id="r-prof" min="5" max="150" step="1" value="116"></div>
+    <div class="perilla" data-modo="sismo"><label for="r-prec">Casas precarias <output id="o-prec"></output></label><input type="range" id="r-prec" min="0" max="100" step="5" value="10"></div>
+    <div class="perilla" data-modo="mar" hidden><label for="r-ola">Altura de la ola <output id="o-ola"></output></label><input type="range" id="r-ola" min="2" max="25" step="1" value="10"></div>
+    <button id="simular"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Simular</button>
+  </div>
+  <p class="pista" id="pista"></p>
+  <div class="resultado" id="resultado" hidden aria-live="polite"></div>
+</section>
+
+<div class="flota" id="leyenda" aria-live="polite" hidden></div>
+<div id="aviso" role="alert" hidden></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@4.4.1/dist/pmtiles.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

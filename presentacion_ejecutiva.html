@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RECONSTRUYE ejecutiva</title>
+<meta name="description" content="Presentación ejecutiva de RECONSTRUYE para la Convocatoria 56 de Minciencias. Agregue ?mpio=DIVIPOLA para personalizarla con un municipio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f5f0; --ink: #14212a; --ink-2: #3a4750; --muted: #5d6870; --line: #d9d3c7;
+    --accent: #1f6f5c; --accent-wash: #e2eee8; --alerta: #b3392a; --noche: #10212b; --noche-2: #c9d4da; --igac: #1d3a5f;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body { background: var(--paper); color: var(--ink); font: clamp(14px, min(1.4vw, 2.5vh), 21px)/1.5 "IBM Plex Sans", system-ui, sans-serif; overflow: hidden; font-variant-numeric: lining-nums; }
+  ::selection { background: var(--accent); color: #fff; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .slide { position: absolute; inset: 0; padding: 7vh 7vw 11vh; display: flex; flex-direction: column; justify-content: center; gap: 3.2vh;
+           opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility .45s; overflow-y: auto; background: var(--paper); }
+  .slide.on { opacity: 1; visibility: visible; }
+  .noche { background: var(--noche); color: #f2efe8; }
+  .noche p { color: var(--noche-2); }
+
+  h1, h2 { font-weight: 600; letter-spacing: -.025em; text-wrap: balance; }
+  h1 { font-size: clamp(40px, min(7.4vw, 13vh), 104px); line-height: .98; }
+  h2 { font-size: clamp(26px, min(4.1vw, 7vh), 58px); line-height: 1.06; max-width: 24ch; }
+  p { max-width: 58ch; }
+  .lead { font-size: 1.2em; max-width: 44ch; color: var(--ink-2); }
+  .fuente { font-size: max(12px, .7em); color: var(--muted); max-width: none; }
+  b, strong { font-weight: 700; }
+
+  .pie { position: fixed; left: 7vw; right: 7vw; bottom: 3.6vh; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); z-index: 2; pointer-events: none; transition: color .45s; }
+  body.oscuro .pie { color: var(--noche-2); }
+  .pie b { color: inherit; letter-spacing: .04em; }
+  .pie .num { margin-right: 250px; font-variant-numeric: tabular-nums; }
+
+  /* 1 */
+  .portada { justify-content: flex-end; padding-bottom: 15vh; gap: 3.4vh; }
+  .portada .frase { font-size: clamp(22px, min(3.2vw, 5.6vh), 46px); line-height: 1.15; max-width: 24ch; color: #f2efe8; }
+  .portada .para { font-size: .95em; color: #9fd0bf; font-weight: 600; }
+
+  /* 2 */
+  .cifras { font-size: clamp(22px, min(3.3vw, 5.4vh), 48px); line-height: 1.2; max-width: 30ch; font-weight: 500; }
+  .cifras strong { color: var(--alerta); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* 3 y 6 */
+  .dos { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4vw; align-items: center; }
+  .figura { display: grid; gap: 8px; margin: 0; }
+  .figura img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 18px 40px rgba(20, 33, 42, .18), 0 2px 6px rgba(20, 33, 42, .08); display: block; }
+  .figura figcaption { font-size: max(12px, .68em); color: var(--muted); }
+  .ciudad { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: baseline; padding: 1.1vh 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .ciudad span { color: var(--ink-2); }
+  .mio { background: var(--accent-wash); border-radius: 10px; padding: 1.4vh 1.1vw; margin-top: 1.6vh; }
+
+  /* 4 */
+  .verbos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3vw; }
+  .verbos > div { border-top: 2px solid var(--ink); padding-top: 1.8vh; display: grid; gap: .5em; align-content: start; }
+  .verbos .v { font-weight: 600; font-size: 2em; line-height: 1; }
+  .verbos p { color: var(--ink-2); }
+
+  /* 5 · IGAC */
+  .igac { background: var(--igac); color: #f2efe8; }
+  .igac p { color: #c8d3e2; }
+  .datos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.4vw; }
+  .datos > div { border-top: 2px solid #8fb0d6; padding-top: 1.6vh; display: grid; gap: .45em; align-content: start; }
+  .datos .n { font-weight: 600; font-size: 2.3em; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
+  .datos h3 { font-size: 1em; color: #fff; }
+  .datos p { font-size: .88em; }
+
+  /* 6 */
+  .capas { display: grid; gap: 1.2vh; }
+  .capa { display: grid; grid-template-columns: 9em 1fr; gap: 1em; align-items: baseline; padding: 1.2vh 0; border-bottom: 1px solid var(--line); }
+  .capa b { font-size: .95em; }
+  .capa span { color: var(--ink-2); font-size: .92em; }
+  .capa .privado { color: var(--accent); }
+
+  /* 7 */
+  .hechos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3vw; }
+  .hechos > div { display: grid; gap: .5em; align-content: start; }
+  .hechos .n { font-weight: 600; font-size: 2.3em; line-height: 1; color: var(--accent); }
+  .trl { display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; max-width: 900px; }
+  .trl div { padding: 1.3vh 0; text-align: center; border-radius: 6px; background: var(--line); color: var(--ink-2); font-weight: 700; font-size: .85em; }
+  .trl .hecho { background: var(--ink); color: #fff; }
+  .trl .meta { background: var(--accent); color: #fff; }
+
+  /* 9 */
+  .escala { display: grid; grid-template-columns: auto 1fr; gap: 3vw; align-items: center; }
+  .escala .grande { font-weight: 700; font-size: clamp(72px, min(11vw, 20vh), 168px); line-height: .9; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .escala ul { list-style: none; padding: 0; display: grid; gap: 1.4vh; }
+  .escala li { padding-bottom: 1.4vh; border-bottom: 1px solid var(--line); }
+  .escala li b { display: block; }
+  .escala li span { color: var(--ink-2); font-size: .92em; }
+
+  /* 10 */
+  .cierre { justify-content: center; gap: 4vh; }
+  .cierre h2 { font-size: clamp(30px, min(5vw, 8.5vh), 72px); max-width: 20ch; }
+  .boton { display: inline-flex; gap: 10px; align-items: center; background: #f2efe8; color: var(--noche); font-weight: 800; padding: 14px 22px; border-radius: 12px; text-decoration: none; width: fit-content; }
+  .boton:hover { background: #fff; }
+
+  .nav { position: fixed; right: 7vw; bottom: 2.6vh; display: flex; gap: 8px; z-index: 3; align-items: center; }
+  .nav button, .nav a { height: 38px; border-radius: 99px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+  .nav button { width: 38px; }
+  .nav a { padding: 0 14px; gap: 7px; font-size: 14px; font-weight: 700; background: var(--accent); border-color: var(--accent); color: #fff; }
+  .nav button:hover { border-color: var(--accent); }
+  body.oscuro .nav button { background: var(--noche); color: #f2efe8; border-color: #3a4c57; }
+
+  @media (max-width: 820px) {
+    .slide { padding: 5vh 6vw 12vh; justify-content: flex-start; }
+    .dos, .verbos, .datos, .hechos, .escala { grid-template-columns: minmax(0, 1fr); }
+    .capa { grid-template-columns: 1fr; gap: .2em; }
+    .pie .num { margin-right: 0; display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+  @media print {
+    body { overflow: visible; }
+    .slide { position: relative; opacity: 1; visibility: visible; min-height: 100vh; page-break-after: always; }
+    .nav, .pie { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide noche portada" aria-label="Portada">
+  <h1>RECONSTRUYE</h1>
+  <p class="frase">El sismo ya pasó. La temporada de lluvias no.</p>
+  <p class="para" data-mpio="portada" hidden></p>
+  <p>Un gemelo digital para reconstruir seguro el territorio afectado.</p>
+</section>
+
+<!-- 2 -->
+<section class="slide" aria-label="El sismo">
+  <h2>10 de agosto de 2026: magnitud 7,4 en 16 departamentos</h2>
+  <p class="cifras"><strong>335</strong> personas murieron. <strong>36.478</strong> viviendas quedaron destruidas y <strong>206.931</strong> con daños.</p>
+  <p class="lead"><b>7,1 millones</b> de personas sintieron intensidad VII o más.</p>
+</section>
+
+<!-- 3 -->
+<section class="slide" aria-label="El riesgo sigue">
+  <h2>Las laderas quedaron sueltas y ahora llueve</h2>
+  <div class="dos">
+    <figure class="figura">
+      <img src="img/simulador-prioridad.jpg" alt="Mapa: municipios en rojo, amarillo y verde según la sacudida del 10 de agosto y el riesgo de lluvia">
+      <figcaption>Rojo: sacudida VII o más y lluvia con riesgo alto en octubre y noviembre.</figcaption>
+    </figure>
+    <div>
+      <p style="margin-bottom:1.6vh">Nuestro modelo de riesgo climático ya los señalaba antes del sismo:</p>
+      <div class="ciudad"><b>Pereira</b><span>VIII</span><span>77 %</span></div>
+      <div class="ciudad"><b>Armenia</b><span>VII</span><span>76 %</span></div>
+      <div class="ciudad"><b>Dosquebradas</b><span>VIII</span><span>67 %</span></div>
+      <p class="fuente" style="margin-top:1vh">Intensidad del sismo · probabilidad mensual de emergencia por lluvia</p>
+      <p class="mio" data-mpio="riesgo" hidden></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" aria-label="La idea">
+  <h2>Un gemelo digital de la reconstrucción</h2>
+  <p class="lead">Cada edificación del territorio afectado, con su sismo, su lluvia y su escombro.</p>
+  <div class="verbos">
+    <div><p class="v">Simular</p><p>Sismos y maremotos sobre el mapa real, en cualquier municipio.</p></div>
+    <div><p class="v">Decidir</p><p>Qué se repara, qué se demuele y dónde es seguro volver a construir.</p></div>
+    <div><p class="v">Reconstruir</p><p>El escombro se vuelve material certificado y la comunidad construye seguro.</p></div>
+  </div>
+</section>
+
+<!-- Líneas de la convocatoria -->
+<section class="slide" aria-label="Investigación">
+  <h2>Qué investiga el proyecto</h2>
+  <div class="verbos">
+    <div><p class="v">5.2.2</p><p><b>Escombro convertido en material.</b> Visión por computador clasifica el escombro, un modelo predice el desempeño del material reciclado y ensayos bajo NTC y NSR-10 lo certifican. Bloques, adoquines y concreto no estructural, producidos por la comunidad.</p></div>
+    <div><p class="v">5.1.2</p><p><b>Estabilidad de laderas y suelos.</b> Modelos predictivos de deslizamientos y licuación en zonas afectadas, para decidir dónde es seguro reconstruir.</p></div>
+    <div><p class="v">5.1.3</p><p><b>Evaluación rápida de daños estructurales.</b> Visión por computador con imágenes de drones y satélite, y fotos ciudadanas, para clasificar edificaciones por nivel de daño y priorizar inspecciones. Se puede validar contra las inspecciones en terreno de los ingenieros.</p></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide igac" aria-label="Datos del IGAC">
+  <h2>La base: lo que el IGAC ya sabe de cada edificación</h2>
+  <div class="datos">
+    <div><p class="n">374.125</p><h3>Construcciones catastrales</h3><p>Con número de pisos y tipo de construcción. Lo no convencional es lo más frágil.</p></div>
+    <div><p class="n">45</p><h3>Gestores catastrales</h3><p>El IGAC publica quién tiene el inventario de cada municipio.</p></div>
+    <div><p class="n">1:100.000</p><h3>Suelos</h3><p>Capacidad de uso de las tierras en todo el país; más detalle en Pereira.</p></div>
+    <div><p class="n">30 m</p><h3>Relieve y cartografía</h3><p>Modelo de elevación, cartografía municipal y observatorio inmobiliario para estimar pérdidas en pesos.</p></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" aria-label="El simulador">
+  <h2>Cualquier municipio, cualquier amenaza</h2>
+  <div class="dos">
+    <figure class="figura">
+      <a href="simulador/index.html" data-mpio="enlace"><img src="img/simulador-ciudad.jpg" alt="Simulador en 3D: edificaciones de Pereira después del sismo, coloreadas por estado"></a>    </figure>
+    <div class="capas">
+      <div class="capa"><b>Público</b><span>Sismos del USGS, relieve, edificaciones de Overture Maps en todo el mundo.</span></div>
+      <div class="capa"><b>IGAC</b><span>Catastro, suelos y gestores catastrales.</span></div>
+      <div class="capa"><b class="privado">Alcaldía</b><span>Su inventario y sus inspecciones. No sale de su equipo.</span></div>
+      <div class="capa"><b>Resultado</b><span>Una decisión por edificación, toneladas de escombro y bloques posibles.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" aria-label="Madurez">
+  <h2>No partimos de cero</h2>
+  <div class="hechos">
+    <div><p class="n">AUC 0,78</p><p><b>Modelo de riesgo climático del equipo.</b> 1.102 municipios, datos abiertos, validado en tres cortes temporales.</p></div>
+    <div><p class="n">626 ≈ 571</p><p><b>Gemelo digital calibrado con Pereira.</b> Viviendas destruidas simuladas frente a las reales, de 136.803. Difieren menos del 10 %.</p></div>
+  </div>
+  <div class="trl" role="img" aria-label="Madurez tecnológica: hoy TRL 6, meta TRL 9">
+    <div class="hecho">1</div><div class="hecho">2</div><div class="hecho">3</div><div class="hecho">4</div><div class="hecho">5</div><div class="hecho">6</div><div>7</div><div>8</div><div class="meta">9</div>
+  </div>
+  <p class="fuente">Hoy TRL 6. Meta: TRL 9, con la solución adoptada por las alcaldías y en uso.</p>
+</section>
+
+<!-- 9 -->
+<section class="slide" aria-label="Escala">
+  <h2>Del piloto a todo el territorio afectado</h2>
+  <div class="escala">
+    <p class="grande">500</p>
+    <ul>
+      <li><b>Municipios en el decreto</b><span>Un gemelo para cada uno, sobre el catastro del IGAC y de cada gestor.</span></li>
+      <li><b>Material reciclado certificado</b><span>Unidades productivas que convierten escombro en bloques y adoquines.</span></li>
+      <li><b>Obras y escuela de reconstrucción</b><span>Vivienda segura y accesible, construida por la comunidad.</span></li>
+    </ul>
+  </div></section>
+
+<!-- 10 -->
+<section class="slide noche cierre" aria-label="Cierre">
+  <h2>Reconstruir con datos, con la gente y con sus propios escombros</h2>
+  <a class="boton" href="simulador/index.html" data-mpio="enlace2"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Ver el simulador</a>
+  <p>RECONSTRUYE · Convocatoria 56 · Minciencias</p>
+</section>
+
+<div class="pie" aria-hidden="true"><b>RECONSTRUYE</b><span class="num" id="num"></span></div>
+<nav class="nav" aria-label="Navegación">
+  <a href="simulador/index.html" id="ir-simulador"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4l3-7 4 14 3-7h6"/></svg>Simulador</a>
+  <button id="prev" aria-label="Diapositiva anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button id="next" aria-label="Diapositiva siguiente"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</nav>
+
+<script type="module">
+  const slides = [...document.querySelectorAll('.slide')], num = document.getElementById('num');
+  let i = Math.min(Math.max(parseInt(location.hash.slice(1)) - 1 || 0, 0), slides.length - 1);
+  function show(n) {
+    i = Math.min(Math.max(n, 0), slides.length - 1);
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    document.body.classList.toggle('oscuro', slides[i].classList.contains('noche') || slides[i].classList.contains('igac'));
+    num.textContent = `${i + 1} / ${slides.length}`;
+    history.replaceState(null, '', location.search + '#' + (i + 1));
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (e.key === 'f') document.documentElement.requestFullscreen?.();
+    if (e.key === 's') location.href = document.getElementById('ir-simulador').href;
+  });
+  document.getElementById('next').onclick = () => show(i + 1);
+  document.getElementById('prev').onclick = () => show(i - 1);
+  show(i);
+
+  // ?mpio=DIVIPOLA: la presentación habla del municipio que se está visitando
+  const id = new URLSearchParams(location.search).get('mpio');
+  if (id) {
+    try {
+      const { mmiEn, prioridad, distanciaKm } = await import('./simulador/modelo.js');
+      const leer = n => fetch(`simulador/datos/${n}.json`).then(r => r.json());
+      const [mun, sismo, malla] = await Promise.all(['riesgo_lluvia', 'sismo', 'mmi'].map(leer));
+      const m = mun.find(x => x.id === id);
+      if (m) {
+        const plano = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+        const MENORES = new Set(['de', 'del', 'la', 'las', 'los', 'el', 'y']);
+        const titulo = s => s.toLowerCase().split(' ').map((w, k) => k && MENORES.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        const c = sismo.ciudades.find(x => plano(x.nombre) === plano(m.nombre));
+        const centro = c && distanciaKm(c.lon, c.lat, m.lon, m.lat) < 15 ? [c.lon, c.lat] : [m.lon, m.lat]; // mismo criterio que el simulador
+        const mmi = mmiEn(malla, sismo, ...centro).mmi, prio = prioridad(mmi, m.pl ?? 0);
+        const ROMANO = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'], N = titulo(m.nombre);
+        const pct = v => v == null ? 'sin dato' : `${Math.round(v * 100)} %`;
+        const poner = (k, t) => { const el = document.querySelector(`[data-mpio="${k}"]`); el.textContent = t; el.hidden = false; };
+        poner('portada', `Para ${N} (${titulo(m.dpto)})`);
+        poner('riesgo', `${N}: intensidad ${ROMANO[Math.max(1, Math.min(10, Math.round(mmi)))]}, lluvia ${pct(m.pl)}, semáforo en ${prio}.`);
+        for (const a of document.querySelectorAll('[data-mpio^="enlace"], #ir-simulador')) a.href = `simulador/index.html?mpio=${m.id}`;
+        document.title = `RECONSTRUYE · ${N}`;
+      }
+    } catch (e) { console.warn('No se pudo personalizar la presentación (abra con un servidor local):', e); }
+  }
+</script>
+</body>
+</html>

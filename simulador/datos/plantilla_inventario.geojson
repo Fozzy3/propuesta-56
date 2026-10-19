@@ -1,0 +1,16 @@
+{
+  "type": "FeatureCollection",
+  "nota": "EJEMPLO FICTICIO para mostrar el formato del inventario municipal. No son edificaciones reales. Campos opcionales: pisos (entero 1-80), sistema (bahareque, tapia, adobe, mamposteria_no_confinada, mamposteria_confinada, porticos, nsr10), uso (texto), estado (habitable, reparar, demoler: resultado de la inspección post-sismo). La geometría (Polygon o MultiPolygon, en WGS84) es obligatoria.",
+  "features": [
+    { "type": "Feature", "properties": { "pisos": 2, "sistema": "bahareque", "uso": "vivienda (ejemplo)" },
+      "geometry": { "type": "Polygon", "coordinates": [[[-75.69500, 4.81400], [-75.69488, 4.81400], [-75.69488, 4.81412], [-75.69500, 4.81412], [-75.69500, 4.81400]]] } },
+    { "type": "Feature", "properties": { "pisos": 3, "sistema": "mamposteria_no_confinada", "uso": "vivienda y comercio (ejemplo)", "estado": "reparar" },
+      "geometry": { "type": "Polygon", "coordinates": [[[-75.69480, 4.81400], [-75.69468, 4.81400], [-75.69468, 4.81412], [-75.69480, 4.81412], [-75.69480, 4.81400]]] } },
+    { "type": "Feature", "properties": { "pisos": 4, "sistema": "mamposteria_confinada", "uso": "vivienda (ejemplo)" },
+      "geometry": { "type": "Polygon", "coordinates": [[[-75.69460, 4.81400], [-75.69448, 4.81400], [-75.69448, 4.81412], [-75.69460, 4.81412], [-75.69460, 4.81400]]] } },
+    { "type": "Feature", "properties": { "pisos": 6, "sistema": "porticos", "uso": "oficinas (ejemplo)" },
+      "geometry": { "type": "Polygon", "coordinates": [[[-75.69440, 4.81400], [-75.69428, 4.81400], [-75.69428, 4.81412], [-75.69440, 4.81412], [-75.69440, 4.81400]]] } },
+    { "type": "Feature", "properties": { "pisos": 1, "sistema": "tapia", "uso": "vivienda (ejemplo)", "estado": "demoler" },
+      "geometry": { "type": "Polygon", "coordinates": [[[-75.69420, 4.81400], [-75.69408, 4.81400], [-75.69408, 4.81412], [-75.69420, 4.81412], [-75.69420, 4.81400]]] } }
+  ]
+}
