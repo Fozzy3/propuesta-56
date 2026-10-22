@@ -1,0 +1,729 @@
+{
+ "generado": "2026-10-21",
+ "familias": {
+  "ungrd_geologico": "UNGRD · eventos geológicos",
+  "ungrd_hidro": "UNGRD · eventos hidrometeorológicos",
+  "ungrd_incendio": "UNGRD · incendios",
+  "ungrd_antropico": "UNGRD · eventos tecnológicos y antrópicos",
+  "ungrd_medidas": "UNGRD · cómo se mide la afectación",
+  "sismo": "Sismo del 10 de agosto y amenaza sísmica",
+  "masa": "Movimientos en masa",
+  "clima": "Clima y lluvias (IDEAM y otros)",
+  "vial": "Seguridad vial",
+  "salud": "Salud pública",
+  "vulnerabilidad": "Vulnerabilidad y capacidad",
+  "seguridad": "Seguridad ciudadana",
+  "factibilidad": "Factibilidad: conflicto, conectividad y capacidad"
+ },
+ "variables": {
+  "mmi": {
+   "familia": "sismo",
+   "nombre": "Intensidad del sismo en la cabecera (MMI)",
+   "fuente": "USGS ShakeMap us6000tjl2",
+   "periodo": "10 ago 2026",
+   "unidad": "MMI",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "mmi_max": {
+   "familia": "sismo",
+   "nombre": "Intensidad máxima del sismo en el territorio (MMI)",
+   "fuente": "USGS ShakeMap us6000tjl2",
+   "periodo": "10 ago 2026",
+   "unidad": "MMI",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "usgs_desliz": {
+   "familia": "sismo",
+   "nombre": "Área con amenaza de deslizamiento por el sismo",
+   "fuente": "USGS Ground Failure (Jessee 2018)",
+   "periodo": "10 ago 2026",
+   "unidad": "% del área",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "usgs_licua": {
+   "familia": "sismo",
+   "nombre": "Área con amenaza de licuación por el sismo",
+   "fuente": "USGS Ground Failure (Zhu 2017)",
+   "periodo": "10 ago 2026",
+   "unidad": "% del área",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "replicas": {
+   "familia": "sismo",
+   "nombre": "Réplicas a 50 km o menos de la cabecera",
+   "fuente": "USGS FDSN",
+   "periodo": "10 ago–oct 2026",
+   "unidad": "sismos",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "nsr_aa": {
+   "familia": "sismo",
+   "nombre": "Amenaza sísmica de diseño (Aa, NSR-10)",
+   "fuente": "SGC, NSR-10 Apéndice A-4",
+   "periodo": "vigente",
+   "unidad": "g",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "sismos_hist": {
+   "familia": "sismo",
+   "nombre": "Sismos M ≥ 4,5 a 50 km o menos (1973–2026)",
+   "fuente": "USGS FDSN",
+   "periodo": "1973–2026",
+   "unidad": "sismos",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "mm_alta": {
+   "familia": "masa",
+   "nombre": "Área en amenaza alta o muy alta por movimientos en masa",
+   "fuente": "SGC, mapa nacional 1:100.000",
+   "periodo": "vigente",
+   "unidad": "% del área",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "mm_media": {
+   "familia": "masa",
+   "nombre": "Área en amenaza media por movimientos en masa",
+   "fuente": "SGC, mapa nacional 1:100.000",
+   "periodo": "vigente",
+   "unidad": "% del área",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "simma": {
+   "familia": "masa",
+   "nombre": "Movimientos en masa históricos (catálogo SIMMA)",
+   "fuente": "SGC SIMMA",
+   "periodo": "histórico",
+   "unidad": "por 100 km²",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "ideam_desliz_mod": {
+   "familia": "masa",
+   "nombre": "Días con alerta IDEAM de deslizamiento moderada o alta",
+   "fuente": "IDEAM",
+   "periodo": "1 ene–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "ideam_desliz_alta": {
+   "familia": "masa",
+   "nombre": "Días con alerta IDEAM de deslizamiento alta",
+   "fuente": "IDEAM",
+   "periodo": "1 ene–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "ideam_desliz_post": {
+   "familia": "masa",
+   "nombre": "Días con alerta IDEAM de deslizamiento desde el sismo",
+   "fuente": "IDEAM",
+   "periodo": "10 ago–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "lluvia_post": {
+   "familia": "clima",
+   "nombre": "Lluvia acumulada desde el sismo",
+   "fuente": "IDEAM, estaciones automáticas",
+   "periodo": "10 ago–19 oct 2026",
+   "unidad": "mm",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "lluvia_maxdia": {
+   "familia": "clima",
+   "nombre": "Máxima lluvia en un día desde el sismo",
+   "fuente": "IDEAM, estaciones automáticas",
+   "periodo": "10 ago–19 oct 2026",
+   "unidad": "mm",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "lluvia_30d": {
+   "familia": "clima",
+   "nombre": "Lluvia de los últimos 30 días",
+   "fuente": "IDEAM, estaciones automáticas",
+   "periodo": "20 sep–19 oct 2026",
+   "unidad": "mm",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "lluvia_2026": {
+   "familia": "clima",
+   "nombre": "Lluvia acumulada en 2026",
+   "fuente": "IDEAM, estaciones automáticas",
+   "periodo": "1 ene–19 oct 2026",
+   "unidad": "mm",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "ideam_hidro_naranja": {
+   "familia": "clima",
+   "nombre": "Días con alerta hidrológica naranja o roja",
+   "fuente": "IDEAM, por subzona hidrográfica",
+   "periodo": "01 Jan–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "ideam_hidro_roja": {
+   "familia": "clima",
+   "nombre": "Días con alerta hidrológica roja",
+   "fuente": "IDEAM, por subzona hidrográfica",
+   "periodo": "01 Jan–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "ideam_hidro_post": {
+   "familia": "clima",
+   "nombre": "Días con alerta hidrológica naranja o roja desde el sismo",
+   "fuente": "IDEAM, por subzona hidrográfica",
+   "periodo": "10 ago–20 Oct 2026",
+   "unidad": "días",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "lluvia_pl": {
+   "familia": "clima",
+   "nombre": "Probabilidad de emergencia por lluvia en octubre–noviembre",
+   "fuente": "Modelo de riesgo climático del equipo (AUC 0,78)",
+   "periodo": "promedio mensual",
+   "unidad": "%",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "lluvia_p": {
+   "familia": "clima",
+   "nombre": "Probabilidad mensual de emergencia por lluvia",
+   "fuente": "Modelo de riesgo climático del equipo (AUC 0,78)",
+   "periodo": "promedio mensual",
+   "unidad": "%",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "imrc_ir": {
+   "familia": "clima",
+   "nombre": "Índice de riesgo por exceso de lluvias",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "datos 2015–2021",
+   "unidad": "índice",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "imrc_pob": {
+   "familia": "clima",
+   "nombre": "Población expuesta a exceso de lluvias",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "datos 2015–2021",
+   "unidad": "% población",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "imrc_area": {
+   "familia": "clima",
+   "nombre": "Área amenazada por exceso de lluvias",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "datos 2015–2021",
+   "unidad": "% del área",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "imrc": {
+   "familia": "clima",
+   "nombre": "Riesgo por exceso de lluvias ajustado por capacidades",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "datos 2015–2021",
+   "unidad": "índice",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "vial_muertos": {
+   "familia": "vial",
+   "nombre": "Fallecidos en siniestros viales",
+   "fuente": "MinDefensa / Policía (uav5-b85g)",
+   "periodo": "ene 2023–jul 2026",
+   "unidad": "personas",
+   "porHab": true,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "vial_lesionados": {
+   "familia": "vial",
+   "nombre": "Lesionados en siniestros viales",
+   "fuente": "MinDefensa / Policía (ntej-qq7v)",
+   "periodo": "ene 2023–ago 2026",
+   "unidad": "personas",
+   "porHab": true,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "salud_total": {
+   "familia": "salud",
+   "nombre": "Eventos de salud pública notificados",
+   "fuente": "INS SIVIGILA (4hyg-wa9d)",
+   "periodo": "2020–2022",
+   "unidad": "casos",
+   "porHab": true,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "salud_dengue": {
+   "familia": "salud",
+   "nombre": "Casos de dengue",
+   "fuente": "INS SIVIGILA (4hyg-wa9d)",
+   "periodo": "2020–2022",
+   "unidad": "casos",
+   "porHab": true,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "salud_irag": {
+   "familia": "salud",
+   "nombre": "Infección respiratoria aguda grave (IRAG)",
+   "fuente": "INS SIVIGILA (4hyg-wa9d)",
+   "periodo": "2020–2022",
+   "unidad": "casos",
+   "porHab": true,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "salud_desnutricion": {
+   "familia": "salud",
+   "nombre": "Desnutrición aguda en menores de 5 años",
+   "fuente": "INS SIVIGILA (4hyg-wa9d)",
+   "periodo": "2020–2022",
+   "unidad": "casos",
+   "porHab": true,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "ips": {
+   "familia": "salud",
+   "nombre": "Sedes de IPS (menos sedes, más riesgo)",
+   "fuente": "MinSalud REPS (c36g-9fc2)",
+   "periodo": "mar 2026",
+   "unidad": "sedes",
+   "porHab": true,
+   "inverso": true,
+   "on": true,
+   "desc": ""
+  },
+  "ipm": {
+   "familia": "vulnerabilidad",
+   "nombre": "Pobreza multidimensional (IPM)",
+   "fuente": "DNP IMRC 2024 (DANE)",
+   "periodo": "censo 2018",
+   "unidad": "% población",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "rural": {
+   "familia": "vulnerabilidad",
+   "nombre": "Población rural (centros poblados y rural disperso)",
+   "fuente": "DANE, proyecciones 2026",
+   "periodo": "2026",
+   "unidad": "% población",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": ""
+  },
+  "imrc_cap": {
+   "familia": "vulnerabilidad",
+   "nombre": "Capacidades municipales (menos capacidad, más riesgo)",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "datos 2016–2021",
+   "unidad": "índice 0–1",
+   "porHab": false,
+   "inverso": true,
+   "on": true,
+   "desc": ""
+  },
+  "grd_herr": {
+   "familia": "vulnerabilidad",
+   "nombre": "Herramientas de gestión del riesgo: CMGRD, PMGRD, EMRE (menos, más riesgo)",
+   "fuente": "DNP IMRC 2024",
+   "periodo": "2016–2021",
+   "unidad": "0–2",
+   "porHab": false,
+   "inverso": true,
+   "on": false,
+   "desc": ""
+  },
+  "homicidios": {
+   "familia": "seguridad",
+   "nombre": "Homicidios",
+   "fuente": "MinDefensa / Policía (m8fd-ahd9)",
+   "periodo": "ene 2023–2026",
+   "unidad": "personas",
+   "porHab": true,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "iica": {
+   "familia": "factibilidad",
+   "nombre": "Incidencia del conflicto armado (IICA)",
+   "fuente": "DNP, IICA 2017–2023",
+   "periodo": "2023",
+   "unidad": "índice",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "pdet": {
+   "familia": "factibilidad",
+   "nombre": "Municipio PDET",
+   "fuente": "Agencia de Renovación del Territorio (idrk-ba8y)",
+   "periodo": "vigente",
+   "unidad": "sí/no",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "zomac": {
+   "familia": "factibilidad",
+   "nombre": "Municipio ZOMAC",
+   "fuente": "Decreto 1650 de 2017, anexo 2",
+   "periodo": "vigente",
+   "unidad": "sí/no",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "internet": {
+   "familia": "factibilidad",
+   "nombre": "Internet fijo (menos acceso, más riesgo)",
+   "fuente": "MinTIC vía TerriData (DNP)",
+   "periodo": "2025",
+   "unidad": "accesos por 100 hab.",
+   "porHab": false,
+   "inverso": true,
+   "on": false,
+   "desc": ""
+  },
+  "mdm": {
+   "familia": "factibilidad",
+   "nombre": "Desempeño municipal MDM (menos, más riesgo)",
+   "fuente": "DNP vía TerriData",
+   "periodo": "2024",
+   "unidad": "puntos 0–100",
+   "porHab": false,
+   "inverso": true,
+   "on": false,
+   "desc": ""
+  },
+  "categoria": {
+   "familia": "factibilidad",
+   "nombre": "Categoría municipal, Ley 617 (6 = la más pequeña)",
+   "fuente": "Contaduría vía TerriData (DNP)",
+   "periodo": "2024",
+   "unidad": "categoría",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  }
+ },
+ "tipos": {
+  "sismo": {
+   "familia": "ungrd_geologico",
+   "nombre": "Sismo",
+   "on": true
+  },
+  "movimiento_masa": {
+   "familia": "ungrd_geologico",
+   "nombre": "Movimiento en masa",
+   "on": true
+  },
+  "erosion": {
+   "familia": "ungrd_geologico",
+   "nombre": "Erosión (incl. costera)",
+   "on": true
+  },
+  "volcanico": {
+   "familia": "ungrd_geologico",
+   "nombre": "Actividad volcánica",
+   "on": true
+  },
+  "inundacion": {
+   "familia": "ungrd_hidro",
+   "nombre": "Inundación",
+   "on": true
+  },
+  "creciente_subita": {
+   "familia": "ungrd_hidro",
+   "nombre": "Creciente súbita",
+   "on": true
+  },
+  "avenida_torrencial": {
+   "familia": "ungrd_hidro",
+   "nombre": "Avenida torrencial",
+   "on": true
+  },
+  "lluvias": {
+   "familia": "ungrd_hidro",
+   "nombre": "Lluvias, temporal y ciclón",
+   "on": true
+  },
+  "vendaval": {
+   "familia": "ungrd_hidro",
+   "nombre": "Vendaval",
+   "on": true
+  },
+  "tormenta_electrica": {
+   "familia": "ungrd_hidro",
+   "nombre": "Tormenta eléctrica",
+   "on": true
+  },
+  "granizada": {
+   "familia": "ungrd_hidro",
+   "nombre": "Granizada",
+   "on": true
+  },
+  "helada": {
+   "familia": "ungrd_hidro",
+   "nombre": "Helada",
+   "on": true
+  },
+  "sequia": {
+   "familia": "ungrd_hidro",
+   "nombre": "Sequía",
+   "on": true
+  },
+  "desabastecimiento": {
+   "familia": "ungrd_hidro",
+   "nombre": "Desabastecimiento de agua",
+   "on": true
+  },
+  "incendio_forestal": {
+   "familia": "ungrd_incendio",
+   "nombre": "Incendio forestal o de cobertura",
+   "on": false
+  },
+  "incendio_estructural": {
+   "familia": "ungrd_incendio",
+   "nombre": "Incendio estructural",
+   "on": false
+  },
+  "accidente_transito": {
+   "familia": "ungrd_antropico",
+   "nombre": "Accidente de transporte terrestre",
+   "on": false
+  },
+  "accidente_aereo_acuatico": {
+   "familia": "ungrd_antropico",
+   "nombre": "Accidente aéreo, fluvial o marítimo e inmersión",
+   "on": false
+  },
+  "accidente_minero": {
+   "familia": "ungrd_antropico",
+   "nombre": "Accidente minero",
+   "on": false
+  },
+  "colapso_estructural": {
+   "familia": "ungrd_antropico",
+   "nombre": "Colapso estructural",
+   "on": false
+  },
+  "tecnologico": {
+   "familia": "ungrd_antropico",
+   "nombre": "Explosión, fuga, derrame o contaminación",
+   "on": false
+  },
+  "otros": {
+   "familia": "ungrd_antropico",
+   "nombre": "Otros (caso fortuito, aglomeraciones…)",
+   "on": false
+  }
+ },
+ "medidas": [
+  {
+   "nombre": "Eventos registrados",
+   "porHab": true,
+   "on": true
+  },
+  {
+   "nombre": "Fallecidos",
+   "porHab": true,
+   "on": true
+  },
+  {
+   "nombre": "Heridos y desaparecidos",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Personas afectadas",
+   "porHab": true,
+   "on": true
+  },
+  {
+   "nombre": "Familias afectadas",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Viviendas destruidas",
+   "porHab": true,
+   "on": true
+  },
+  {
+   "nombre": "Viviendas averiadas",
+   "porHab": true,
+   "on": true
+  },
+  {
+   "nombre": "Vías y puentes afectados",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Acueductos y alcantarillados afectados",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Centros de salud, educativos y comunitarios afectados",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Hectáreas afectadas",
+   "porHab": true,
+   "on": false
+  },
+  {
+   "nombre": "Personas en el RUD (2023–2024)",
+   "porHab": true,
+   "on": false
+  }
+ ],
+ "ungrd": {
+  "anios": [
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "filas": {
+   "2019": [
+    4423,
+    2967
+   ],
+   "2020": [
+    3790,
+    2641
+   ],
+   "2021": [
+    3920,
+    2989
+   ],
+   "2022": [
+    4535,
+    3463
+   ],
+   "2023": [
+    5134,
+    3740
+   ],
+   "2024": [
+    10576,
+    7299
+   ],
+   "2025": [
+    6481,
+    4773
+   ]
+  },
+  "sin_unir": 3
+ },
+ "pdf": [
+  "41668",
+  "41551",
+  "73168",
+  "73555",
+  "63594",
+  "17614",
+  "25845"
+ ]
+}

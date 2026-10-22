@@ -6,3 +6,6 @@
 !/img/
 !/simulador/
 /simulador/preparar_datos.py
+!/municipios/
+/municipios/crudos/
+/municipios/preparar_datos.py

@@ -1,0 +1,474 @@
+{
+ "municipios": {
+  "17001": {
+   "n": "MANIZALES",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17013": {
+   "n": "AGUADAS",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17042": {
+   "n": "ANSERMA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17050": {
+   "n": "ARANZAZU",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17088": {
+   "n": "BELALCÁZAR",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17174": {
+   "n": "CHINCHINÁ",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17272": {
+   "n": "FILADELFIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17380": {
+   "n": "LA DORADA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17388": {
+   "n": "LA MERCED",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17433": {
+   "n": "MANZANARES",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17442": {
+   "n": "MARMATO",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17444": {
+   "n": "MARQUETALIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17446": {
+   "n": "MARULANDA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17486": {
+   "n": "NEIRA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17495": {
+   "n": "NORCASIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17513": {
+   "n": "PÁCORA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17524": {
+   "n": "PALESTINA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17541": {
+   "n": "PENSILVANIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17614": {
+   "n": "RIOSUCIO",
+   "elegible": "Reporte Situacional 15 de la UNGRD y Decreto municipal 097 de calamidad pública (10 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17616": {
+   "n": "RISARALDA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17653": {
+   "n": "SALAMINA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17662": {
+   "n": "SAMANÁ",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17665": {
+   "n": "SAN JOSÉ",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17777": {
+   "n": "SUPÍA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17867": {
+   "n": "VICTORIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17873": {
+   "n": "VILLAMARÍA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "17877": {
+   "n": "VITERBO",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "25845": {
+   "n": "Une",
+   "elegible": "Gobernación de Cundinamarca (18 ago 2026); no aparece en la lista parcial de EDAN/RUD del 15 sep",
+   "url": "https://www.cundinamarca.gov.co/noticias/sismo-del-10-de-agosto-causo-afectaciones-en-89-viviendas-y-80-instituciones-educativas-de-cundinamarca"
+  },
+  "27001": {
+   "n": "Quibdó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27006": {
+   "n": "Acandí",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27025": {
+   "n": "Alto Baudó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "excluir": "confinamientos que continúan (Defensoría, 31 ago 2026)",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27050": {
+   "n": "Atrato",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27073": {
+   "n": "Bagadó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "factible": "Minería ilegal con maquinaria y disputa entre grupos armados (Defensoría, 31 ago 2026). Se puede trabajar con protocolo de seguridad",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27075": {
+   "n": "Bahía Solano",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27077": {
+   "n": "Bajo Baudó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "excluir": "confinamientos que continúan (Defensoría, 31 ago 2026)",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27099": {
+   "n": "Bojayá",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27135": {
+   "n": "El Cantón del San Pablo",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27150": {
+   "n": "Carmen del Darién",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27160": {
+   "n": "Cértegui",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27205": {
+   "n": "Condoto",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27245": {
+   "n": "El Carmen de Atrato",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27250": {
+   "n": "El Litoral del San Juan",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27361": {
+   "n": "Istmina",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "factible": "Recibe desplazados de Torrá por los combates en Sipí (Defensoría, 31 ago 2026)",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27413": {
+   "n": "Lloró",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "factible": "Minería ilegal con maquinaria y disputa entre grupos armados (Defensoría, 31 ago 2026). Se puede trabajar con protocolo de seguridad",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27425": {
+   "n": "Medio Atrato",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27430": {
+   "n": "Medio Baudó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27450": {
+   "n": "Medio San Juan",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27491": {
+   "n": "Nóvita",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "excluir": "combates entre el Clan del Golfo y el ELN y 652 familias confinadas en Sipí y Nóvita (Defensoría, 31 ago 2026)",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27495": {
+   "n": "Nuquí",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27580": {
+   "n": "Río Iró",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27600": {
+   "n": "Río Quito",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27615": {
+   "n": "Riosucio",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27660": {
+   "n": "San José del Palmar",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27745": {
+   "n": "Sipí",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf",
+   "excluir": "combates entre el Clan del Golfo y el ELN y 652 familias confinadas en Sipí y Nóvita (Defensoría, 31 ago 2026)",
+   "op_url": "https://www.asuntoslegales.com.co/actualidad/defensoria-del-pueblo-alerto-por-compleja-crisis-humanitaria-en-el-choco-4469893"
+  },
+  "27787": {
+   "n": "Tadó",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "27810": {
+   "n": "Unión Panamericana",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "41551": {
+   "n": "Pitalito",
+   "elegible": "Gobernación del Huila citada por La Nación (15 ago 2026, 31 municipios). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.lanacion.com.co/sismo-aumenta-a-31-los-municipios-afectados-en-huila/"
+  },
+  "41668": {
+   "n": "San Agustín",
+   "elegible": "Gobernación del Huila citada por La Nación (15 ago 2026, 31 municipios). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.lanacion.com.co/sismo-aumenta-a-31-los-municipios-afectados-en-huila/"
+  },
+  "41676": {
+   "n": "Santa María",
+   "elegible": "Gobernación del Huila citada por La Nación (15 ago 2026, 31 municipios). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.lanacion.com.co/sismo-aumenta-a-31-los-municipios-afectados-en-huila/"
+  },
+  "41770": {
+   "n": "Suaza",
+   "elegible": "Gobernación del Huila citada por La Nación (15 ago 2026, 31 municipios). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.lanacion.com.co/sismo-aumenta-a-31-los-municipios-afectados-en-huila/"
+  },
+  "63001": {
+   "n": "ARMENIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63111": {
+   "n": "BUENAVISTA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63130": {
+   "n": "CALARCÁ",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63190": {
+   "n": "CIRCASIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63212": {
+   "n": "CÓRDOBA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63272": {
+   "n": "FILANDIA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63302": {
+   "n": "GÉNOVA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63401": {
+   "n": "LA TEBAIDA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63470": {
+   "n": "MONTENEGRO",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63548": {
+   "n": "PIJAO",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63594": {
+   "n": "QUIMBAYA",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "63690": {
+   "n": "SALENTO",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66001": {
+   "n": "Pereira",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66045": {
+   "n": "Apía",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66075": {
+   "n": "Balboa",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66088": {
+   "n": "Belén de Umbría",
+   "elegible": "Evaluación de viviendas por ingenieros de Bogotá (25 ago 2026); Risaralda 14 de 14 municipios en el RS 071. Pedir certificado de afectación a la alcaldía",
+   "url": "https://bogota.gov.co/mi-ciudad/ambiente/bogota-desplego-equipos-emergencias-y-apoyo-municipios-tras-terremoto",
+   "factible": "Alerta temprana 001 de 2026 de la Defensoría (riesgo alto: ELN y Clan del Golfo). Se puede trabajar con protocolo de seguridad y acompañamiento de la alcaldía",
+   "op_url": "https://www.defensoria.gov.co/-/defensoria-emite-alerta-temprana-para-que-sean-protegidas-las-poblaciones-de-belen-de-umbria-mistrato-y-pueblo-rico"
+  },
+  "66170": {
+   "n": "Dosquebradas",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66318": {
+   "n": "Guática",
+   "elegible": "Evaluación de viviendas por ingenieros de Bogotá (25 ago 2026); Risaralda 14 de 14 municipios en el RS 071. Pedir certificado de afectación a la alcaldía",
+   "url": "https://bogota.gov.co/mi-ciudad/ambiente/bogota-desplego-equipos-emergencias-y-apoyo-municipios-tras-terremoto"
+  },
+  "66383": {
+   "n": "La Celia",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66440": {
+   "n": "Marsella",
+   "elegible": "Evaluación de viviendas por ingenieros de Bogotá (25 ago 2026); Risaralda 14 de 14 municipios en el RS 071. Pedir certificado de afectación a la alcaldía",
+   "url": "https://bogota.gov.co/mi-ciudad/ambiente/bogota-desplego-equipos-emergencias-y-apoyo-municipios-tras-terremoto"
+  },
+  "66456": {
+   "n": "Mistrató",
+   "elegible": "Evaluación de viviendas por ingenieros de Bogotá (25 ago 2026); Risaralda 14 de 14 municipios en el RS 071. Pedir certificado de afectación a la alcaldía",
+   "url": "https://bogota.gov.co/mi-ciudad/ambiente/bogota-desplego-equipos-emergencias-y-apoyo-municipios-tras-terremoto",
+   "factible": "Alerta temprana 001 de 2026 de la Defensoría (riesgo alto: ELN y Clan del Golfo). Se puede trabajar con protocolo de seguridad y acompañamiento de la alcaldía",
+   "op_url": "https://www.defensoria.gov.co/-/defensoria-emite-alerta-temprana-para-que-sean-protegidas-las-poblaciones-de-belen-de-umbria-mistrato-y-pueblo-rico"
+  },
+  "66572": {
+   "n": "Pueblo Rico",
+   "elegible": "Evaluación de viviendas por ingenieros de Bogotá (25 ago 2026); Risaralda 14 de 14 municipios en el RS 071. Pedir certificado de afectación a la alcaldía",
+   "url": "https://bogota.gov.co/mi-ciudad/ambiente/bogota-desplego-equipos-emergencias-y-apoyo-municipios-tras-terremoto",
+   "factible": "Alerta temprana 001 de 2026 de la Defensoría (riesgo alto: ELN y Clan del Golfo). Se puede trabajar con protocolo de seguridad y acompañamiento de la alcaldía",
+   "op_url": "https://www.defensoria.gov.co/-/defensoria-emite-alerta-temprana-para-que-sean-protegidas-las-poblaciones-de-belen-de-umbria-mistrato-y-pueblo-rico"
+  },
+  "66682": {
+   "n": "Santa Rosa de Cabal",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "66687": {
+   "n": "Santuario",
+   "elegible": "Reporte Situacional 15 de la UNGRD (12 ago 2026)",
+   "url": "https://www.lasillavacia.com/wp-content/uploads/2026/08/REPORTE-SITUACIONAL-15-TERRITORIOS-SISMO-7.4-CHOCO.pdf"
+  },
+  "73124": {
+   "n": "Cajamarca",
+   "elegible": "Reporte preliminar del Tolima citado por Ecos del Combeima (10 ago 2026). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.ecosdelcombeima.com/tolima/nota-193108-estos-son-los-municipios-del-tolima-afectados-por-el-sismo-de-magnitud-74"
+  },
+  "73168": {
+   "n": "Chaparral",
+   "elegible": "Reporte preliminar del Tolima citado por Ecos del Combeima (10 ago 2026). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.ecosdelcombeima.com/tolima/nota-193108-estos-son-los-municipios-del-tolima-afectados-por-el-sismo-de-magnitud-74"
+  },
+  "73347": {
+   "n": "Herveo",
+   "elegible": "Reporte preliminar del Tolima citado por Ecos del Combeima (10 ago 2026). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.ecosdelcombeima.com/tolima/nota-193108-estos-son-los-municipios-del-tolima-afectados-por-el-sismo-de-magnitud-74"
+  },
+  "73555": {
+   "n": "Planadas",
+   "elegible": "Reporte preliminar del Tolima citado por Ecos del Combeima (10 ago 2026). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.ecosdelcombeima.com/tolima/nota-193108-estos-son-los-municipios-del-tolima-afectados-por-el-sismo-de-magnitud-74"
+  },
+  "73616": {
+   "n": "Rioblanco",
+   "excluir": "sin reporte propio de afectación; ataque con drones a la alcaldía (9 ago 2026)",
+   "op_url": "https://www.vanguardia.com/colombia/2026/08/09/alerta-en-el-sur-del-tolima-atacan-con-drones-la-alcaldia-de-rioblanco-en-medio-de-combates/"
+  },
+  "73870": {
+   "n": "Villahermosa",
+   "elegible": "Reporte preliminar del Tolima citado por Ecos del Combeima (10 ago 2026). Pedir certificado de afectación a la alcaldía",
+   "url": "https://www.ecosdelcombeima.com/tolima/nota-193108-estos-son-los-municipios-del-tolima-afectados-por-el-sismo-de-magnitud-74"
+  }
+ }
+}
