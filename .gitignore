@@ -9,3 +9,4 @@
 !/municipios/
 /municipios/crudos/
 /municipios/preparar_datos.py
+/municipios/__pycache__/
