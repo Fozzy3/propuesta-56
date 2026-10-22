@@ -267,41 +267,39 @@ $('csv').addEventListener('click', () => {
 document.querySelector('.tabs').addEventListener('click', e => {
   const t = e.target.closest('button')?.dataset.tab; if (!t) return;
   for (const b of document.querySelectorAll('.tabs button')) b.setAttribute('aria-selected', String(b.dataset.tab === t));
-  $('vista-ranking').hidden = t !== 'ranking'; $('decision').hidden = t !== 'decision';
+  $('vista-ranking').hidden = t !== 'ranking'; $('decision').hidden = t !== 'decision'; $('fuentes').hidden = t !== 'fuentes';
   if (t === 'ranking') map.resize();
 });
 
 // ---------------------------------------------------------------- decisión
-// Regla fija, independiente del panel: variables del proyecto en los 16 departamentos, se quitan los
-// no elegibles o no factibles (decision.json) y se sugieren 7 en 5 departamentos.
+// Regla fija, independiente del panel: todas las variables relevantes en los 16 departamentos; los 8 de mayor riesgo de cada uno.
 function pintarDecision() {
-  const vars = [...PROYECTO.vars.map(id => ({ id, inverso: V[id].inverso })), ...PROYECTO.medidas.map(i => ({ id: MEDIDA(i) }))];
-  const fila = m => ({ id: m.id, dpto: m.d, valores: Object.fromEntries(vars.map(v => [v.id, valor(m, v.id, PROYECTO.tipos)])) });
-  const rank = calcular(MUN.map(fila), vars);
+  const vars = [...DEFECTO.vars.map(id => ({ id, inverso: V[id].inverso })), ...DEFECTO.medidas.map(i => ({ id: MEDIDA(i) }))];
+  const rank = calcular(MUN.map(m => ({ id: m.id, dpto: m.d, valores: Object.fromEntries(vars.map(v => [v.id, valor(m, v.id, DEFECTO.tipos)])) })), vars);
   rank.forEach((r, i) => { r.pos = i + 1; });
-  const total = num.format(rank.length);
-  const elegidos = sugerir(rank.filter(r => !fuera(r.id)));
-  const ids = new Set(elegidos.map(r => r.id));
-  const dato = (b, t) => `<div><b>${b}</b><span>${t}</span></div>`;
-  const tarjeta = r => {
-    const m = POR_ID.get(r.id), v = m.v;
-    return `<article class="elegido">
-      <header><div><h3>${esc(m.N)}</h3><span class="dp">${esc(m.d)} · ${num.format(m.pob)} hab.</span></div>
-        <div class="rk"><b>${r.pos}</b><span>de ${total}</span></div></header>
-      <div class="datos">${dato(fmt('', v.mmi), 'intensidad del sismo (MMI)')}${dato(`${fmt('', v.mm_alta)} %`, 'área en amenaza alta por deslizamiento')}${dato(num.format(v.ideam_desliz_post ?? 0), 'días con alerta IDEAM desde el sismo')}${dato(num.format(m.ev.movimiento_masa?.[0] ?? 0), 'deslizamientos UNGRD 2019–2025')}</div>
-    </article>`;
-  };
-  const otros = rank.slice(0, 25).filter(r => !ids.has(r.id));
+  const filas = DPTOS.map(d => `<tr><th scope="row">${esc(d)}</th>${rank.filter(r => r.dpto === d).slice(0, 8)
+    .map(r => `<td>${esc(POR_ID.get(r.id).N)}<small>${r.pos}</small></td>`).join('')}</tr>`).join('');
   $('decision-col').innerHTML = `
-    <h2>Decisión: 7 municipios en ${new Set(elegidos.map(r => r.dpto)).size} departamentos</h2>
-    <div class="elegidos">${elegidos.map(tarjeta).join('')}</div>
-    <h2>Los que no entraron (25 primeros del ranking)</h2>
-    <table><thead><tr><th class="num">Puesto</th><th>Municipio</th><th>Departamento</th><th class="num">Puntaje</th></tr></thead>
-      <tbody>${otros.map(r => `<tr><td class="num">${r.pos}</td><td>${esc(POR_ID.get(r.id).N)}</td><td>${esc(r.dpto)}</td><td class="num">${num1.format(r.puntaje)}</td></tr>`).join('')}</tbody></table>`;
+    <h2>Los 8 municipios de mayor riesgo por departamento</h2>
+    <p>Con las ${vars.length} variables relevantes. El número es el puesto entre ${num.format(rank.length)} municipios.</p>
+    <table class="top8"><thead><tr><th>Departamento</th>${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<th>${i}</th>`).join('')}</tr></thead><tbody>${filas}</tbody></table>`;
+}
+
+// ---------------------------------------------------------------- fuentes
+const enlace = u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(new URL(u).hostname.replace(/^www\./, ''))}</a>`;
+function pintarFuentes() {
+  const fila = (grupo, nombre, fuente, periodo, unidad, con, url) => `<tr><td>${esc(grupo)}</td><td>${esc(nombre)}</td><td>${esc(fuente)}</td><td>${esc(periodo)}</td><td>${esc(unidad)}</td><td class="num">${con} de ${MUN.length}</td><td>${enlace(url)}</td></tr>`;
+  $('fuentes-col').innerHTML = `
+    <h2>Fuentes</h2>
+    <table><thead><tr><th>Grupo</th><th>Variable</th><th>Fuente</th><th>Periodo</th><th>Unidad</th><th class="num">Municipios con dato</th><th>Enlace</th></tr></thead><tbody>
+    ${Object.entries(V).map(([k, v]) => fila(META.familias[v.familia], v.nombre, v.fuente, v.periodo, v.porHab ? v.unidad + ' por 10.000 hab.' : v.unidad, MUN.filter(m => m.v[k] != null).length, v.url)).join('')}
+    ${fila('UNGRD', `${Object.keys(META.tipos).length} tipos de evento × ${META.medidas.length} medidas de afectación`, 'UNGRD, reportes anuales de emergencias', `${META.ungrd.anios[0]}–${META.ungrd.anios.at(-1)}`, 'por 10.000 hab.', MUN.filter(m => Object.keys(m.ev).length).length, META.ungrd.url)}
+    ${fila('Base', 'Población 2026 (divide las variables por 10.000 hab.)', META.poblacion.fuente, META.poblacion.periodo, 'habitantes', MUN.length, META.poblacion.url)}
+    </tbody></table>`;
 }
 
 // ---------------------------------------------------------------- arranque
-construirPanel(); pintarDecision(); recalcular();
+construirPanel(); pintarDecision(); pintarFuentes(); recalcular();
 if (estado.sel && POR_ID.has(estado.sel)) encuadrar([estado.sel]);
 else if (estado.dptos.size < DPTOS.length) encuadrar(MUN.filter(m => estado.dptos.has(m.d)).map(m => m.id));
 $('cargando').hidden = true;

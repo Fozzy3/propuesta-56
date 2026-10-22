@@ -118,18 +118,10 @@
   .hoja p, .hoja li { color: var(--ink-2); max-width: 75ch; }
   .hoja table td { white-space: normal; vertical-align: top; }
   .hoja p, .hoja ul { margin: 0; }
-  .elegidos { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 12px; }
-  .elegido { border: 1px solid var(--line); border-top: 4px solid var(--q4); border-radius: 12px; padding: 14px; display: grid; gap: 10px; align-content: start; background: var(--panel); }
-  .elegido header { display: flex; justify-content: space-between; gap: 10px; }
-  .elegido h3 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
-  .elegido .dp { color: var(--muted); font-size: 13px; }
-  .elegido .rk { text-align: right; display: grid; }
-  .elegido .rk b { font-size: 24px; line-height: 1; color: var(--q5); }
-  .elegido .rk span { font-size: 12px; color: var(--muted); }
-  .elegido .datos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .elegido .datos div { display: grid; background: var(--panel-2); border-radius: 8px; padding: 7px 9px; }
-  .elegido .datos b { font-size: 17px; }
-  .elegido .datos span { font-size: 12px; color: var(--muted); line-height: 1.25; }
+  .hoja th { padding: 7px 10px; }
+  .hoja tbody tr { cursor: default; }
+  .top8 th[scope=row] { color: var(--ink); font-size: 13px; border-bottom-color: #efebe3; }
+  .top8 td small { display: block; color: var(--muted); font-size: 11.5px; }
 
   #cargando { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); font-weight: 600; text-align: center; padding: 24px; }
   .maplibregl-ctrl-attrib { font-size: 11px; }
@@ -154,6 +146,7 @@
   <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-tab="ranking">Mapa y ranking</button>
     <button role="tab" aria-selected="false" data-tab="decision">Decisión</button>
+    <button role="tab" aria-selected="false" data-tab="fuentes">Fuentes</button>
   </div>
   <button class="btn prim" id="sugerir"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Sugerir 7 en 5 departamentos</button>
   <button class="btn" id="csv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Exportar CSV</button>
@@ -206,6 +199,7 @@
 </main>
 
 <section id="decision" class="hoja" hidden><div class="col" id="decision-col"></div></section>
+<section id="fuentes" class="hoja" hidden><div class="col" id="fuentes-col"></div></section>
 <div id="cargando">Cargando datos…</div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
