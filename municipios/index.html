@@ -121,7 +121,8 @@
   .hoja th { padding: 7px 10px; }
   .hoja tbody tr { cursor: default; }
   .top8 th[scope=row] { color: var(--ink); font-size: 13px; border-bottom-color: #efebe3; }
-  .top8 td small { display: block; color: var(--muted); font-size: 11.5px; }
+  .nv { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11.5px; }
+  .nv i { width: 8px; height: 8px; border-radius: 2px; flex: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   details.como > summary { display: inline-flex; align-items: center; cursor: pointer; list-style: none; font-size: 12.5px; font-weight: 600; color: var(--accent); background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; }
   details.como > summary::-webkit-details-marker { display: none; }
   details.como > summary:hover, details.como[open] > summary { background: var(--accent-wash); }
@@ -154,7 +155,7 @@
     .hoja table { display: table; font-size: 10px; }
     .top8 th, .top8 td { padding: 3px 5px; }
     .top8 th[scope=row] { font-size: 10.5px; }
-    .top8 td small { font-size: 9px; }
+    .nv { font-size: 9px; }
     .top8 tr { break-inside: avoid; }
   }
 

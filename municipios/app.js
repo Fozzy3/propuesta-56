@@ -10,6 +10,7 @@ const plano = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const FOCO = ['Tolima', 'Huila', 'Caldas', 'Quindío', 'Risaralda'];
 const CLASES = ['--q1', '--q2', '--q3', '--q4', '--q5'].map(v => getComputedStyle(document.documentElement).getPropertyValue(v).trim());
+const NIVELES = ['Muy bajo', 'Bajo', 'Medio', 'Alto', 'Muy alto'];
 const guardar = (k, v) => { try { localStorage.setItem('riesgo56:' + k, JSON.stringify(v)); } catch { /* sin almacenamiento */ } };
 const leer = (k, def) => { try { return JSON.parse(localStorage.getItem('riesgo56:' + k)) ?? def; } catch { return def; } };
 
@@ -278,8 +279,10 @@ function pintarDecision() {
   const rank = calcular(MUN.map(m => ({ id: m.id, dpto: m.d, valores: Object.fromEntries(vars.map(v => [v.id, valor(m, v.id, DEFECTO.tipos)])) })), vars);
   rank.forEach((r, i) => { r.pos = i + 1; });
   const total = num.format(rank.length);
+  const nivel = r => Math.min(4, Math.floor((rank.length - r.pos) / rank.length * 5)); // los mismos quintiles del mapa
+  const etiqueta = r => `<span class="nv"><i style="background:${CLASES[nivel(r)]}"></i>${NIVELES[nivel(r)]}</span>`;
   const top = DPTOS.map(d => [d, rank.filter(r => r.dpto === d).slice(0, 8)]);
-  const filas = top.map(([d, rs]) => `<tr><th scope="row">${esc(d)}</th>${rs.map(r => `<td>${esc(POR_ID.get(r.id).N)}<small>${r.pos}</small></td>`).join('')}</tr>`).join('');
+  const filas = top.map(([d, rs]) => `<tr><th scope="row">${esc(d)}</th>${rs.map(r => `<td>${esc(POR_ID.get(r.id).N)}${etiqueta(r)}</td>`).join('')}</tr>`).join('');
   const ungrd = id => id.startsWith('ungrd_');
   const nombreVar = id => ungrd(id) ? `UNGRD · ${META.medidas[+id.slice(6)].nombre}` : V[id].nombre;
   const unidad = id => ungrd(id) ? 'por 10.000 hab.' : V[id].porHab ? `${V[id].unidad} por 10.000 hab.` : V[id].unidad;
@@ -292,14 +295,14 @@ function pintarDecision() {
     const r = rank.find(x => x.id === id), m = POR_ID.get(id);
     const items = vars.map(v => ({ v, p: r.pct[v.id], x: valor(m, v.id, DEFECTO.tipos) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1));
     const suma = items.reduce((s, it) => s + (it.p ?? 0) * 100, 0);
-    return `<p><b>${esc(m.N)}</b>, ${esc(m.d)}: puesto ${r.pos} de ${total}. Puntaje = ${num.format(suma)} ÷ ${r.cobertura} notas = <b>${num1.format(r.puntaje)}</b>${r.cobertura < vars.length ? ` (${vars.length - r.cobertura} variables sin dato)` : ''}.</p>
+    return `<p><b>${esc(m.N)}</b>, ${esc(m.d)}: riesgo ${NIVELES[nivel(r)].toLowerCase()}, puesto ${r.pos} de ${total}. Puntaje = ${num.format(suma)} ÷ ${r.cobertura} notas = <b>${num1.format(r.puntaje)}</b>${r.cobertura < vars.length ? ` (${vars.length - r.cobertura} variables sin dato)` : ''}.</p>
       <table class="calc"><thead><tr><th>Variable</th><th class="num">Valor del municipio</th><th>Nota</th></tr></thead><tbody>${items.map(({ v, p, x }) =>
         `<tr><td>${esc(nombreVar(v.id))}</td><td class="num">${fmt('', x)} <small>${esc(unidad(v.id))}</small></td><td>${p == null ? '<small>sin dato, se omite</small>' : `<span class="nota"><i style="width:${p * 100}%"></i></span><b>${Math.round(p * 100)}</b>`}</td></tr>`).join('')}</tbody></table>`;
   };
   $('decision-col').innerHTML = `
     <div class="tit"><h2>Los 8 municipios de mayor riesgo por departamento</h2>
       <button class="btn" id="imprimir"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Imprimir</button></div>
-    <p>Con las ${vars.length} variables relevantes. El número es el puesto entre ${total} municipios.</p>
+    <p>Con las ${vars.length} variables relevantes. Debajo de cada municipio, su nivel de riesgo frente a los ${total} municipios de los 16 departamentos: cada nivel es una quinta parte, de muy bajo a muy alto.</p>
     <details class="como"><summary>¿Cómo se calculó?</summary><div>
       <ol>
         <li>Se toman las ${vars.length} variables de abajo para los ${total} municipios de los 16 departamentos.</li>
@@ -313,7 +316,7 @@ function pintarDecision() {
       <ul>${grupos.map(([nom, vs]) => `<li><b>${esc(nom)}:</b> ${esc(vs.join('; '))}.</li>`).join('')}</ul>
       <p>La fuente y el enlace de cada variable están en la pestaña Fuentes.</p>
       <h3>El cálculo de un municipio</h3>
-      <label class="calc-sel">Municipio <select id="calc-mpio">${top.map(([d, rs]) => `<optgroup label="${esc(d)}">${rs.map(r => `<option value="${r.id}">${esc(POR_ID.get(r.id).N)} · ${r.pos}</option>`).join('')}</optgroup>`).join('')}</select></label>
+      <label class="calc-sel">Municipio <select id="calc-mpio">${top.map(([d, rs]) => `<optgroup label="${esc(d)}">${rs.map(r => `<option value="${r.id}">${esc(POR_ID.get(r.id).N)}</option>`).join('')}</optgroup>`).join('')}</select></label>
       <div id="calc">${detalle(rank[0].id)}</div>
     </div></details>
     <table class="top8"><thead><tr><th>Departamento</th>${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<th>${i}</th>`).join('')}</tr></thead><tbody>${filas}</tbody></table>`;
