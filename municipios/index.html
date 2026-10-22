@@ -138,6 +138,26 @@
   #cargando { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); font-weight: 600; text-align: center; padding: 24px; }
   .maplibregl-ctrl-attrib { font-size: 11px; }
 
+  .tit { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  /* Imprimir: solo el título y la tabla de Decisión, en una hoja horizontal */
+  @page { size: A4 landscape; margin: 10mm; }
+  @media print {
+    html, body { height: auto; }
+    body { display: block; overflow: visible; background: #fff; font-size: 11px; }
+    body > header { padding: 0 0 4px; border: 0; background: none; }
+    body > header > :not(:first-child), body > header .sub, #vista-ranking, #fuentes, details.como, #imprimir { display: none !important; }
+    .hoja { overflow: visible; padding: 0; background: none; }
+    .hoja .col { max-width: none; gap: 6px; }
+    body > header h1 { font-size: 13px; }
+    .hoja h2 { font-size: 15px; margin: 0; }
+    .hoja table { display: table; font-size: 10px; }
+    .top8 th, .top8 td { padding: 3px 5px; }
+    .top8 th[scope=row] { font-size: 10.5px; }
+    .top8 td small { font-size: 9px; }
+    .top8 tr { break-inside: avoid; }
+  }
+
   @media (max-width: 900px) {
     body { overflow: auto; height: auto; }
     main { grid-template-columns: 1fr; }

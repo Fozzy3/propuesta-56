@@ -297,7 +297,8 @@ function pintarDecision() {
         `<tr><td>${esc(nombreVar(v.id))}</td><td class="num">${fmt('', x)} <small>${esc(unidad(v.id))}</small></td><td>${p == null ? '<small>sin dato, se omite</small>' : `<span class="nota"><i style="width:${p * 100}%"></i></span><b>${Math.round(p * 100)}</b>`}</td></tr>`).join('')}</tbody></table>`;
   };
   $('decision-col').innerHTML = `
-    <h2>Los 8 municipios de mayor riesgo por departamento</h2>
+    <div class="tit"><h2>Los 8 municipios de mayor riesgo por departamento</h2>
+      <button class="btn" id="imprimir"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Imprimir</button></div>
     <p>Con las ${vars.length} variables relevantes. El número es el puesto entre ${total} municipios.</p>
     <details class="como"><summary>¿Cómo se calculó?</summary><div>
       <ol>
@@ -318,6 +319,7 @@ function pintarDecision() {
     <table class="top8"><thead><tr><th>Departamento</th>${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<th>${i}</th>`).join('')}</tr></thead><tbody>${filas}</tbody></table>`;
   $('calc-mpio').value = rank[0].id;
   $('calc-mpio').onchange = e => { $('calc').innerHTML = detalle(e.target.value); };
+  $('imprimir').onclick = () => print(); // la hoja impresa sale de @media print en index.html
 }
 
 // ---------------------------------------------------------------- fuentes
