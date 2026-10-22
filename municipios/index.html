@@ -122,6 +122,18 @@
   .hoja tbody tr { cursor: default; }
   .top8 th[scope=row] { color: var(--ink); font-size: 13px; border-bottom-color: #efebe3; }
   .top8 td small { display: block; color: var(--muted); font-size: 11.5px; }
+  details.como > summary { display: inline-flex; align-items: center; cursor: pointer; list-style: none; font-size: 12.5px; font-weight: 600; color: var(--accent); background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; }
+  details.como > summary::-webkit-details-marker { display: none; }
+  details.como > summary:hover, details.como[open] > summary { background: var(--accent-wash); }
+  details.como > div { display: grid; gap: 10px; margin-top: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-2); }
+  details.como h3 { margin: 6px 0 0; font-size: 15px; }
+  details.como ol, details.como ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; color: var(--ink-2); max-width: 80ch; }
+  .calc-sel { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
+  .calc-sel select { font: inherit; font-weight: 400; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; background: var(--panel); max-width: 100%; }
+  .calc small { color: var(--muted); }
+  .calc td:last-child { white-space: nowrap; }
+  .calc .nota { display: inline-block; width: 90px; height: 6px; margin-right: 8px; vertical-align: middle; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .calc .nota i { display: block; height: 100%; background: var(--q4); }
 
   #cargando { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; background: var(--bg); color: var(--ink-2); font-weight: 600; text-align: center; padding: 24px; }
   .maplibregl-ctrl-attrib { font-size: 11px; }

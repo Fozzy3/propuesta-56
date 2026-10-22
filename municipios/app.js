@@ -277,12 +277,47 @@ function pintarDecision() {
   const vars = [...DEFECTO.vars.map(id => ({ id, inverso: V[id].inverso })), ...DEFECTO.medidas.map(i => ({ id: MEDIDA(i) }))];
   const rank = calcular(MUN.map(m => ({ id: m.id, dpto: m.d, valores: Object.fromEntries(vars.map(v => [v.id, valor(m, v.id, DEFECTO.tipos)])) })), vars);
   rank.forEach((r, i) => { r.pos = i + 1; });
-  const filas = DPTOS.map(d => `<tr><th scope="row">${esc(d)}</th>${rank.filter(r => r.dpto === d).slice(0, 8)
-    .map(r => `<td>${esc(POR_ID.get(r.id).N)}<small>${r.pos}</small></td>`).join('')}</tr>`).join('');
+  const total = num.format(rank.length);
+  const top = DPTOS.map(d => [d, rank.filter(r => r.dpto === d).slice(0, 8)]);
+  const filas = top.map(([d, rs]) => `<tr><th scope="row">${esc(d)}</th>${rs.map(r => `<td>${esc(POR_ID.get(r.id).N)}<small>${r.pos}</small></td>`).join('')}</tr>`).join('');
+  const ungrd = id => id.startsWith('ungrd_');
+  const nombreVar = id => ungrd(id) ? `UNGRD · ${META.medidas[+id.slice(6)].nombre}` : V[id].nombre;
+  const unidad = id => ungrd(id) ? 'por 10.000 hab.' : V[id].porHab ? `${V[id].unidad} por 10.000 hab.` : V[id].unidad;
+  const grupos = Object.entries(META.familias).filter(([fam]) => !fam.startsWith('ungrd_'))
+    .map(([fam, nom]) => [nom, vars.filter(v => !ungrd(v.id) && V[v.id].familia === fam).map(v => V[v.id].nombre)]).filter(([, vs]) => vs.length)
+    .concat([[`UNGRD ${META.ungrd.anios[0]}–${META.ungrd.anios.at(-1)}, ${DEFECTO.tipos.length} tipos de evento (${DEFECTO.tipos.map(t => META.tipos[t].nombre.toLowerCase()).join(', ')})`,
+      DEFECTO.medidas.map(i => `${META.medidas[i].nombre} por 10.000 hab.`)]]);
+  // Cálculo de un municipio: valor, nota y promedio, para justificar su puesto.
+  const detalle = id => {
+    const r = rank.find(x => x.id === id), m = POR_ID.get(id);
+    const items = vars.map(v => ({ v, p: r.pct[v.id], x: valor(m, v.id, DEFECTO.tipos) })).sort((a, b) => (b.p ?? -1) - (a.p ?? -1));
+    const suma = items.reduce((s, it) => s + (it.p ?? 0) * 100, 0);
+    return `<p><b>${esc(m.N)}</b>, ${esc(m.d)}: puesto ${r.pos} de ${total}. Puntaje = ${num.format(suma)} ÷ ${r.cobertura} notas = <b>${num1.format(r.puntaje)}</b>${r.cobertura < vars.length ? ` (${vars.length - r.cobertura} variables sin dato)` : ''}.</p>
+      <table class="calc"><thead><tr><th>Variable</th><th class="num">Valor del municipio</th><th>Nota</th></tr></thead><tbody>${items.map(({ v, p, x }) =>
+        `<tr><td>${esc(nombreVar(v.id))}</td><td class="num">${fmt('', x)} <small>${esc(unidad(v.id))}</small></td><td>${p == null ? '<small>sin dato, se omite</small>' : `<span class="nota"><i style="width:${p * 100}%"></i></span><b>${Math.round(p * 100)}</b>`}</td></tr>`).join('')}</tbody></table>`;
+  };
   $('decision-col').innerHTML = `
     <h2>Los 8 municipios de mayor riesgo por departamento</h2>
-    <p>Con las ${vars.length} variables relevantes. El número es el puesto entre ${num.format(rank.length)} municipios.</p>
+    <p>Con las ${vars.length} variables relevantes. El número es el puesto entre ${total} municipios.</p>
+    <details class="como"><summary>¿Cómo se calculó?</summary><div>
+      <ol>
+        <li>Se toman las ${vars.length} variables de abajo para los ${total} municipios de los 16 departamentos.</li>
+        <li>Lo que es un conteo (emergencias de la UNGRD, siniestros viales, casos de salud, sedes de IPS) se divide por la población 2026 del DANE: queda por cada 10.000 habitantes, para comparar pueblos y ciudades.</li>
+        <li>En cada variable, cada municipio saca una <b>nota de 0 a 100</b>: el porcentaje de los ${total} municipios que tienen un valor menor (los empates cuentan la mitad). Si llueve más que en el 90 % de los municipios, saca 90.</li>
+        <li>En lo que protege (sedes de IPS, capacidades municipales) la nota se invierte: más protección, menos riesgo.</li>
+        <li>El <b>puntaje</b> es el promedio de las notas; todas las variables pesan igual. Si al municipio le falta un dato, esa variable no cuenta (no se toma como cero).</li>
+        <li>Se ordenan los ${total} municipios por puntaje y en cada departamento se toman los 8 primeros.</li>
+      </ol>
+      <h3>Las ${vars.length} variables</h3>
+      <ul>${grupos.map(([nom, vs]) => `<li><b>${esc(nom)}:</b> ${esc(vs.join('; '))}.</li>`).join('')}</ul>
+      <p>La fuente y el enlace de cada variable están en la pestaña Fuentes.</p>
+      <h3>El cálculo de un municipio</h3>
+      <label class="calc-sel">Municipio <select id="calc-mpio">${top.map(([d, rs]) => `<optgroup label="${esc(d)}">${rs.map(r => `<option value="${r.id}">${esc(POR_ID.get(r.id).N)} · ${r.pos}</option>`).join('')}</optgroup>`).join('')}</select></label>
+      <div id="calc">${detalle(rank[0].id)}</div>
+    </div></details>
     <table class="top8"><thead><tr><th>Departamento</th>${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<th>${i}</th>`).join('')}</tr></thead><tbody>${filas}</tbody></table>`;
+  $('calc-mpio').value = rank[0].id;
+  $('calc-mpio').onchange = e => { $('calc').innerHTML = detalle(e.target.value); };
 }
 
 // ---------------------------------------------------------------- fuentes
