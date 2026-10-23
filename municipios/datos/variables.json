@@ -12,6 +12,7 @@
   "vial": "Seguridad vial",
   "salud": "Salud pública",
   "vulnerabilidad": "Vulnerabilidad y capacidad",
+  "catastro": "Catastro multipropósito (IGAC)",
   "seguridad": "Seguridad ciudadana",
   "factibilidad": "Factibilidad: conflicto, conectividad y capacidad"
  },
@@ -457,6 +458,42 @@
    "url": "https://colaboracion.dnp.gov.co/CDT/PublishingImages/La_Entidad/Directivos/Direccciones/ambiente-y-desarrollo-sostenible/Gestion-del-Riesgo-de-Desastres/IMRC-BASE-DE-DATOS-2024.xlsx",
    "porHab": false,
    "inverso": true,
+   "on": false,
+   "desc": ""
+  },
+  "cat_pendiente": {
+   "familia": "catastro",
+   "nombre": "Área sin catastro multipropósito actualizado",
+   "fuente": "IGAC, estadísticas catastrales (corte 1 ene 2026 y base 2025)",
+   "periodo": "1 ene 2026",
+   "unidad": "% del área",
+   "url": "https://services2.arcgis.com/RVvWzU3lgJISqdke/arcgis/rest/services/AC_1_DE_ENERO_2026_MS/FeatureServer/0",
+   "porHab": false,
+   "inverso": false,
+   "on": true,
+   "desc": "Sin catastro al día no se sabe qué predios y construcciones hay ni cuánto valen: cuesta medir el daño y focalizar la reconstrucción."
+  },
+  "cat_anios": {
+   "familia": "catastro",
+   "nombre": "Años desde la última actualización catastral rural (sin formar = 40)",
+   "fuente": "IGAC, estadísticas catastrales",
+   "periodo": "1 ene 2026",
+   "unidad": "años",
+   "url": "https://services2.arcgis.com/RVvWzU3lgJISqdke/arcgis/rest/services/_Base_2025__/FeatureServer/0",
+   "porHab": false,
+   "inverso": false,
+   "on": false,
+   "desc": ""
+  },
+  "cat_igac": {
+   "familia": "factibilidad",
+   "nombre": "IGAC es el gestor catastral",
+   "fuente": "IGAC, directorio de gestores catastrales",
+   "periodo": "jun 2026",
+   "unidad": "sí/no",
+   "url": "https://services2.arcgis.com/RVvWzU3lgJISqdke/arcgis/rest/services/CAPA_GESTORES_10062026/FeatureServer/0",
+   "porHab": false,
+   "inverso": false,
    "on": false,
    "desc": ""
   },
